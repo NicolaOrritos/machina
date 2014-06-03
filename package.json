@@ -1,0 +1,36 @@
+{
+    "name": "machina",
+    "version": "0.0.0",
+    "main": "lib/machina.js",
+    "description": "A tool for exchanging data and actions accompanying them",
+    "homepage": "https://github.com/NicolaOrritos/machina",
+    "bugs": "https://github.com/NicolaOrritos/machina/issues",
+    "author": {
+        "name": "Nicola Orritos",
+        "email": "nicola.orritos@gmail.com",
+        "url": "github.com/NicolaOrritos"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/NicolaOrritos/machina"
+    },
+    "license": "MIT",
+    "files": [
+        "lib"
+    ],
+    "keywords": [],
+    "dependencies": {
+        "sjl": ""
+    },
+    "devDependencies": {
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-contrib-nodeunit": "^0.3.3",
+        "grunt-contrib-watch": "^0.6.1",
+        "load-grunt-tasks": "^0.4.0",
+        "time-grunt": "^0.3.1",
+        "jshint-stylish": "^0.2.0"
+    },
+    "scripts": {
+        "test": "grunt"
+    }
+}
