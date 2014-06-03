@@ -1,13 +1,12 @@
-# machina [![Build Status](https://secure.travis-ci.org/NicolaOrritos/machina.png?branch=master)](http://travis-ci.org/NicolaOrritos/machina)
+# machina
 
 A tool for exchanging data and actions accompanying them
 
 ## Getting Started
-Install the module with: `npm install machina`
+_(Coming soon)_
 
 ```javascript
-var machina = require('machina');
-machina.awesome(); // "awesome"
+// Coming soon
 ```
 
 ## Documentation
