@@ -33,7 +33,7 @@ exports.machina = {
     
     'Agents': function(test)
     {
-        test.expect(7);
+        test.expect(11);
         
         test.ok(agents);
         
@@ -57,6 +57,13 @@ exports.machina = {
         var action1 = 'action1';
         agents.sub(agent1, action1);
         test.deepEqual(agents.actions(agent1).length, 1);
+        
+        var action2 = 'action2';
+        agents.sub(agent1, action2);
+        test.deepEqual(agents.actions(agent1).length, 2);
+        test.deepEqual(agents.list().length, 1);
+        test.deepEqual(agents.agents(action1).length, 1);
+        test.deepEqual(agents.agents(action2).length, 1);
         
         
         test.done();
