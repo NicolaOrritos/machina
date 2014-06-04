@@ -2,6 +2,7 @@
 'use strict';
 
 
+var request     = require('request');
 var initchannel = require('../lib/machina').InitChannel;
 
 /*
@@ -33,7 +34,7 @@ exports.machina = {
     
     'Init channel': function(test)
     {
-        test.expect(1);
+        test.expect(4);
         
         test.ok(initchannel);
         
@@ -41,7 +42,19 @@ exports.machina = {
         initchannel.loadTransactions();
         initchannel.start();
         
+        var reqOpts = {
+            uri: 'http://localhost:1337/',
+            method: 'PUT',
+            body: 'TBEGIN{}'
+        };
         
-        test.done();
+        request(reqOpts, function(err, res, body)
+        {
+            test.ifError(err);
+            test.ok(res);
+            test.ok(body);
+            
+            test.done();
+        });
     }
 };
