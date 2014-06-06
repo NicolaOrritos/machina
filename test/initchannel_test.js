@@ -45,7 +45,7 @@ exports.machina = {
         var reqOpts = {
             uri: 'http://localhost:1337/',
             method: 'PUT',
-            body: 'TBEGIN{}'
+            body: 'TBEGIN{"actions":["test"]}'
         };
         
         request(reqOpts, function(err, res, body)
