@@ -4,6 +4,8 @@
 
 var request     = require('request');
 var initchannel = require('../lib/machina').InitChannel;
+var Parser      = require('../lib/commandparser');
+var commands    = require('../lib/commands');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -25,7 +27,8 @@ var initchannel = require('../lib/machina').InitChannel;
     test.ifError(value)
 */
 
-exports.machina = {
+exports.machina =
+{
     setUp: function(done)
     {
         // setup here
@@ -34,7 +37,7 @@ exports.machina = {
     
     'Init channel': function(test)
     {
-        test.expect(4);
+        test.expect(7);
         
         test.ok(initchannel);
         
@@ -50,11 +53,48 @@ exports.machina = {
         
         request(reqOpts, function(err, res, body)
         {
+            console.log('Response from TBEGIN: %s', body);
+            
             test.ifError(err);
             test.ok(res);
             test.ok(body);
             
-            test.done();
+            var parser = new Parser();
+            parser.on(commands.TACK, function(metadata)
+            {
+                var reqOpts2 = {
+                    uri: 'http://localhost:' + metadata.control + "/",
+                    method: 'PUT',
+                    body: 'TEND{"transaction":"' + metadata.transaction + '"}'
+                };
+                
+                console.log('Calling TEND on "%s"', reqOpts2.uri);
+
+                request(reqOpts2, function(err2, res2, body2)
+                {
+                    console.log('Response from TEND: %s', body);
+
+                    test.ifError(err2);
+                    test.ok(res2);
+                    test.ok(body2);
+
+                    test.done();
+                });
+                
+            }).on(commands.ERROR, function(cause)
+            {
+                test.fail(cause);
+                
+                test.done();
+            });
+            
+            parser.parse(body);
         });
+    },
+    
+    tearDown: function(done)
+    {
+        initchannel.stop();
+        done();
     }
 };

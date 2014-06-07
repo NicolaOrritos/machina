@@ -42,7 +42,7 @@ exports.machina = {
     
     'Commands parser': function(test)
     {
-        test.expect(4);
+        test.expect(5);
         
         var parser = new Parser();
         
@@ -51,7 +51,7 @@ exports.machina = {
         var req = new Request();
         req.method = 'POST';
         
-        parser.parse(req).once('ERROR', function(cause)
+        parser.on('ERROR', function(cause)
         {
             test.ok(cause);
             
@@ -61,24 +61,43 @@ exports.machina = {
             
             test.ok(req2);
             
-            parser.parse(req2).once('ASUB', function(metadata)
+            var parser2 = new Parser();
+            
+            parser2.on('ASUB', function(metadata)
             {
                 test.ok(metadata);
                 
                 
-                test.done();
+                var parser3 = new Parser();
                 
-            }).once('ERROR', function(cause)
+                parser3.on('TBEGIN', function(metadata2)
+                {
+                    test.ok(metadata2);
+                    
+                    test.done();
+                    
+                }).on('ERROR', function(cause)
+                {
+                    test.fail(cause);
+
+                    test.done();
+                });
+                
+                parser3.parse('TBEGIN{}');
+                
+            }).on('ERROR', function(cause)
             {
                 test.fail(cause);
                 
                 test.done();
             });
             
+            parser2.parse(req2);
             req2.emit('data', 'ASUB{"NOTHING":"nothing"}');
             req2.emit('end');
         });
         
+        parser.parse(req);
         req.emit('data', 'nothing');
         req.emit('end');
     }
