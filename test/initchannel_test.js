@@ -3,7 +3,7 @@
 
 
 var request     = require('request');
-var initchannel = require('../lib/machina').InitChannel;
+var initchannel = require('../lib/initchannel');
 var Parser      = require('../lib/commandparser');
 var commands    = require('../lib/commands');
 
