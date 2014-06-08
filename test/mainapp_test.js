@@ -2,10 +2,10 @@
 'use strict';
 
 
-// var request     = require('request');
+var request     = require('request');
 var exec        = require('child_process').exec;
-// var Parser      = require('../lib/commandparser');
-// var commands    = require('../lib/commands');
+var Parser      = require('../lib/commandparser');
+var commands    = require('../lib/commands');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -37,17 +37,9 @@ exports.machina =
     
     'Main app': function(test)
     {
-        test.expect(1);
+        test.expect(6);
         
         exec('machina', {cwd: '../bin'});
-        
-        test.ok(true);
-        
-        test.done();
-        
-        /* initchannel.loadAgents();
-        initchannel.loadTransactions();
-        initchannel.start();
         
         var reqOpts = {
             uri: 'http://localhost:1337/',
@@ -62,6 +54,7 @@ exports.machina =
             test.ifError(err);
             test.ok(res);
             test.ok(body);
+            
             
             var parser = new Parser();
             parser.on(commands.TACK, function(metadata)
@@ -93,11 +86,13 @@ exports.machina =
             });
             
             parser.parse(body);
-        }); */
+        });
     },
     
     tearDown: function(done)
     {
+        exec('kill `cat ../bin/machina.pid`');
+        
         done();
     }
 };
