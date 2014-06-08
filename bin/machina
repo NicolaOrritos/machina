@@ -3,19 +3,16 @@
 
 var child_process = require('child_process');
 var docopt        = require('docopt').docopt;
-var CONF          = require('../lib/conf');
 
 
-var doc = " \n\
-Usage: \n\
-  machina init (start | stop) [-d | --development] \n\
-  machina -h | --help \n\
-  machina --version \n\
-\n\
-Options: \n\
-  -h --help         Show this help. \n\
-  -d --development  Start as a normal process. PID file goes to './machina.pid'. \n\
-";
+var doc = "Usage: \n" +
+          "  machina init (start | stop) [-d | --development] \n" +
+          "  machina -h | --help \n" +
+          "  machina --version \n" +
+          "  \n" +
+          "Options: \n" +
+          "  -h --help         Show this help. \n" +
+          "  -d --development  Start as a normal process. PID file goes to './machina.pid'. \n";
 
 var args = docopt(doc, {version: '0.0.1'});
 
