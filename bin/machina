@@ -27,6 +27,7 @@ if (args.init)
     if (args.start)
     {
         child_process.fork('../lib/machina', (args['--development'] ? '--development' : ''));
+        process.exit();
     }
     else
     {
