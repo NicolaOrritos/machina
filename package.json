@@ -20,10 +20,12 @@
   ],
   "keywords": [],
   "dependencies": {
+    "daemon": "^1.1.0",
     "sets.js": "",
     "sjl": ""
   },
   "devDependencies": {
+    "docopt": "^0.4.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.3.3",
     "grunt-contrib-watch": "^0.6.1",

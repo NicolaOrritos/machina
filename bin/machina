@@ -1,0 +1,63 @@
+#!/usr/bin/env node
+
+/**
+ * machina
+ */
+
+
+var fs      = require('fs');
+var docopt  = require('docopt').docopt;
+var machina = require('../lib/machina');
+
+
+function startMachina()
+{
+    console.log("Starting machina daemon...");
+
+
+    // Write the PID file:
+    var pid = process.pid.toString();
+
+    fs.writeFile("/var/run/bagarino.pid", pid, function(err)
+    {
+        if (err)
+        {
+            console.log("Could not write PID file. Cause: %s", err);
+        }
+    });
+
+
+    // Load and apply some bare-bones config:
+    var sjl = require("sjl");
+
+    var defaults = {"ENVIRONMENT": "development"};
+    var CONF = sjl("/etc/machina.conf", defaults);
+
+    process.env["NODE_ENV"] = CONF.ENVIRONMENT;
+
+
+    machina.InitChannel.start();
+}
+
+
+var doc = " \n\
+Usage: \n\
+  machina init (start | stop) \n\
+  machina -h | --help \n\
+  machina --version \n\
+";
+
+var args = docopt(doc, {version: '0.0.1'});
+
+
+if (args.init)
+{
+    if (args.start)
+    {
+        startMachina();
+    }
+    else
+    {
+        // TODO
+    }
+}
