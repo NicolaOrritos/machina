@@ -1,5 +1,7 @@
 'use strict';
 
+var exec = require('child_process').exec;
+
 module.exports = function (grunt) {
     // Show elapsed time at the end
     require('time-grunt')(grunt);
@@ -46,7 +48,22 @@ module.exports = function (grunt) {
     });
     
     
-    grunt.registerTask('test', ['jshint', 'nodeunit']);
+    grunt.registerTask('start', function()
+    {
+        exec('./machina init start -d', {cwd: 'bin'});
+    });
+    
+    grunt.registerTask('stop', function()
+    {
+        exec('./machina init stop -d', {cwd: 'bin'});
+    });
+    
+    grunt.registerTask('clean', function()
+    {
+        exec('rm machina.pid', {cwd: 'bin'});
+    });
+    
+    grunt.registerTask('test', ['start', 'jshint', 'nodeunit', 'stop', 'clean']);
 
     // Default task:
     grunt.registerTask('default', ['test']);

@@ -2,10 +2,10 @@
 'use strict';
 
 
+var fs          = require('fs');
 var request     = require('request');
-var exec        = require('child_process').exec;
-var Parser      = require('../lib/commandparser');
-var commands    = require('../lib/commands');
+// var Parser      = require('../lib/commandparser');
+// var commands    = require('../lib/commands');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -31,32 +31,33 @@ exports.machina =
 {
     setUp: function(done)
     {
-        // setup here
         done();
     },
     
     'Main app': function(test)
     {
-        test.expect(6);
+        test.expect(4);
         
-        exec('machina', {cwd: '../bin'});
+        test.ok(fs.existsSync('bin/machina.pid'));
         
         var reqOpts = {
             uri: 'http://localhost:1337/',
             method: 'PUT',
             body: 'TBEGIN{"actions":["test"]}'
         };
-        
+
         request(reqOpts, function(err, res, body)
         {
             console.log('Response from TBEGIN: %s', body);
-            
+
             test.ifError(err);
             test.ok(res);
             test.ok(body);
             
-            
-            var parser = new Parser();
+            test.done();
+
+
+            /* var parser = new Parser();
             parser.on(commands.TACK, function(metadata)
             {
                 var reqOpts2 = {
@@ -64,7 +65,7 @@ exports.machina =
                     method: 'PUT',
                     body: 'TEND{"transaction":"' + metadata.transaction + '"}'
                 };
-                
+
                 console.log('Calling TEND on "%s"', reqOpts2.uri);
 
                 request(reqOpts2, function(err2, res2, body2)
@@ -77,22 +78,20 @@ exports.machina =
 
                     test.done();
                 });
-                
+
             }).on(commands.ERROR, function(cause)
             {
                 test.fail(cause);
-                
+
                 test.done();
             });
-            
-            parser.parse(body);
+
+            parser.parse(body); */
         });
     },
     
     tearDown: function(done)
     {
-        exec('kill `cat ../bin/machina.pid`');
-        
         done();
     }
 };
