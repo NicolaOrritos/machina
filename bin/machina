@@ -21,16 +21,19 @@ var args = docopt(doc, {version: '0.0.1'});
 
 if (args.init)
 {
+    // Go to the top dir of the server
+    process.chdir('..');
+    
     if (args.start)
     {
-        var log = CONF.log || '../logs/machina.log';
+        var log = CONF.log || './logs/machina.log';
         
         var out = fs.openSync(log, 'a');
         var err = fs.openSync(log, 'a');
         
         var devOption = (args['--development'] ? '--development' : '');
         
-        var child = child_process.spawn('node', ['../lib/machina', devOption], {detached: true, stdio: ['ignore', out, err]});
+        var child = child_process.spawn('node', ['./lib/machina', devOption], {detached: true, stdio: ['ignore', out, err]});
         
         child.unref();
     }

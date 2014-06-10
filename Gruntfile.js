@@ -60,7 +60,7 @@ module.exports = function (grunt) {
     
     grunt.registerTask('clean', function()
     {
-        exec('rm machina.pid', {cwd: 'bin'});
+        exec('rm machina.pid');
     });
     
     grunt.registerTask('test', ['start', 'jshint', 'nodeunit', 'stop', 'clean']);

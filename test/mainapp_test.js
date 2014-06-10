@@ -38,12 +38,12 @@ exports.machina =
     {
         test.expect(4);
         
-        test.ok(fs.existsSync('bin/machina.pid'));
+        test.ok(fs.existsSync('machina.pid'));
         
         var reqOpts = {
             uri: 'http://localhost:1337/',
             method: 'PUT',
-            body: 'TBEGIN{"actions":["test"]}'
+            body: 'TBEGIN'
         };
 
         request(reqOpts, function(err, res, body)
