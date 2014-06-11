@@ -4,8 +4,8 @@
 
 var fs          = require('fs');
 var request     = require('request');
-// var Parser      = require('../lib/commandparser');
-// var commands    = require('../lib/commands');
+var Parser      = require('../lib/commandparser');
+var commands    = require('../lib/commands');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -57,7 +57,7 @@ exports.machina =
             test.done();
 
 
-            /* var parser = new Parser();
+            var parser = new Parser();
             parser.on(commands.TACK, function(metadata)
             {
                 var reqOpts2 = {
@@ -86,7 +86,7 @@ exports.machina =
                 test.done();
             });
 
-            parser.parse(body); */
+            parser.parse(body);
         });
     },
     
