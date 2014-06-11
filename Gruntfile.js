@@ -1,6 +1,7 @@
 'use strict';
 
 var exec = require('child_process').exec;
+var fs   = require('fs');
 
 module.exports = function (grunt) {
     // Show elapsed time at the end
@@ -50,17 +51,49 @@ module.exports = function (grunt) {
     
     grunt.registerTask('start', function()
     {
-        exec('./machina init start -d', {cwd: 'bin'});
+        var done = this.async();
+        
+        exec('./machina init start -d', {cwd: 'bin'}, function(err)
+        {
+            if (err)
+            {
+                console.log('Error starting machina: %s', err);
+                
+                done(false);
+            }
+            else
+            {
+                console.log('Machina started');
+                
+                done(true);
+            }
+        });
     });
     
     grunt.registerTask('stop', function()
     {
-        exec('./machina init stop -d', {cwd: 'bin'});
+        var done = this.async();
+        
+        exec('./machina init stop -d', {cwd: 'bin'}, function(err)
+        {
+            if (err)
+            {
+                console.log('Error stopping machina: %s', err);
+                
+                done(false);
+            }
+            else
+            {
+                console.log('Machina stopped');
+                
+                done(true);
+            }
+        });
     });
     
     grunt.registerTask('clean', function()
     {
-        exec('rm machina.pid');
+        fs.unlinkSync('machina.pid');
     });
     
     grunt.registerTask('test', ['start', 'jshint', 'nodeunit', 'stop', 'clean']);
