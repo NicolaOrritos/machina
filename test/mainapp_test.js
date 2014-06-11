@@ -36,7 +36,7 @@ exports.machina =
     
     'Main app': function(test)
     {
-        test.expect(4);
+        test.expect(7);
         
         test.ok(fs.existsSync('machina.pid'));
         
@@ -53,8 +53,6 @@ exports.machina =
             test.ifError(err);
             test.ok(res);
             test.ok(body);
-            
-            test.done();
 
 
             var parser = new Parser();
