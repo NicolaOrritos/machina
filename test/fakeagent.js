@@ -7,7 +7,7 @@ var ClientSDK = require('../lib/clientsdk');
 
 var client    = new ClientSDK();
 
-client.ASUB('fakeagent', []).on(commands.AACK, function(metadata)
+client.ASUB('fakeagent', [], true).on(commands.AACK, function(metadata)
 {
     console.log('Received AACK for ASUB. Metadata: %s', JSON.stringify(metadata));
     
