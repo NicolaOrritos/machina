@@ -15,5 +15,3 @@ client.ASUB('fakeagent', [], true).on(commands.AACK, function(metadata)
 {
     console.log('Received ERROR for ASUB: %s', cause);
 });
-
-// TODO
