@@ -1,6 +1,6 @@
 # machina
 
-A tool for exchanging data and actions accompanying them
+A tool for executing jobs with a shared data-pool
 
 ## Getting Started
 _(Coming soon)_
@@ -22,4 +22,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2014 Nicola Orritos. Licensed under the MIT license.
+Copyright (c) 2014 Nicola Orritos. Licensed under the GPLv3 license.
