@@ -1,9 +1,9 @@
 
 {
-    "NAME": "pwd",
+    "NAME": "sleep",
     
-    "EXECUTABLE": "pwd",
-    "ARGS":       [],
+    "EXECUTABLE": "sleep",
+    "ARGS":       ["10"],
     "IS_NODE":    false,
     
     "DEPENDENCIES": [],
