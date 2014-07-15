@@ -1,7 +1,10 @@
 
 {
-    "jobs":
+    "CYCLE": true,
+    
+    "JOBS":
     [
-        "job1"
+        "job1",
+        "job2"
     ]
 }

@@ -1,7 +1,7 @@
 
 {
-    EXECUTABLE: 'pwd',
-    ARGS:       [],
+    EXECUTABLE: 'echo',
+    ARGS:       ["pippo", ">", "pippo.txt"],
     IS_NODE:    false,
     
     DEPENDENCIES: [],
