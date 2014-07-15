@@ -1,25 +1,27 @@
 
 {
-    EXECUTABLE: 'echo',
-    ARGS:       ["pippo", ">", "pippo.txt"],
-    IS_NODE:    false,
+    "NAME": "pwd",
     
-    DEPENDENCIES: [],
+    "EXECUTABLE": "pwd",
+    "ARGS":       [],
+    "IS_NODE":    false,
     
-    RETRY_STRATEGY:
+    "DEPENDENCIES": [],
+    
+    "RETRY_STRATEGY":
     {
-        ENABLED: true,
-        TIMES:   3
+        "ENABLED": true,
+        "TIMES":   3
     },
     
-    FAILURE_STRATEGY:
+    "FAILURE_STRATEGY":
     {
-        STOP_QUEUE: true
+        "STOP_QUEUE": true
     },
     
-    TIMEOUT_STRATEGY:
+    "TIMEOUT_STRATEGY":
     {
-        ENABLED:       true,
-        AFTER_SECONDS: 300
+        "ENABLED":       true,
+        "AFTER_SECONDS": 300
     }
 }
