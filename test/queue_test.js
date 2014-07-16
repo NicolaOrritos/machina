@@ -37,7 +37,7 @@ exports.read =
         
         test.ok(queue1);
         
-        test.deepEqual(queue1.jobsCount(), 2);
+        test.deepEqual(queue1.getJobsCount(), 2);
         
         queue1.start();
 
