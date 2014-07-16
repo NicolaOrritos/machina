@@ -28,7 +28,7 @@ exports.read =
     },
     'Simple queue tests': function(test)
     {
-        test.expect(3);
+        test.expect(4);
         
         
         var Queue = require('../lib/machina/queue.js');
@@ -36,16 +36,13 @@ exports.read =
         var queue1 = Queue.load('./etc/machina.d/queue1/queue1.queue', false);
         
         test.ok(queue1);
-        
         test.deepEqual(queue1.getJobsCount(), 2);
-        
-        queue1.start();
 
         queue1.on(Queue.STARTED_EVENT, function(job)
         {
             console.log('Started with job #%s', job);
             
-            test.ok(job);
+            test.deepEqual(job >= 0, true);
         });
 
         queue1.on(Queue.ERROR_EVENT, function(err, job)
@@ -74,5 +71,7 @@ exports.read =
             
             test.done();
         });
+        
+        queue1.start();
     }
 };
