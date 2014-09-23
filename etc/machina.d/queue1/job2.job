@@ -1,24 +1,24 @@
 
 {
     "NAME": "sleep",
-    
+
     "EXECUTABLE": "sleep",
     "ARGS":       ["2"],
     "IS_NODE":    false,
-    
+
     "DEPENDENCIES": [],
-    
+
     "RETRY_STRATEGY":
     {
         "ENABLED": true,
         "TIMES":   3
     },
-    
+
     "FAILURE_STRATEGY":
     {
         "STOP_QUEUE": true
     },
-    
+
     "TIMEOUT_STRATEGY":
     {
         "ENABLED":       true,
