@@ -2,6 +2,13 @@
 {
     "CYCLE": false,
     
+    "DATA_POOL":
+    {
+        "ENABLED": true,
+        "TYPE": "FILE",
+        "FILE": "/tmp/datapool.dat"
+    },
+    
     "JOBS":
     [
         "job2",
