@@ -20,7 +20,8 @@
   ],
   "keywords": [],
   "dependencies": {
-    "docopt": ""
+    "docopt": "",
+    "verror": "^1.4.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "^0.10.0",
