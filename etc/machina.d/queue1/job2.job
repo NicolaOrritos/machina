@@ -1,9 +1,9 @@
 
 {
-    "NAME": "sleep",
+    "NAME": "cat",
 
-    "EXECUTABLE": "sleep",
-    "ARGS":       ["2"],
+    "EXECUTABLE": "cat",
+    "ARGS":       ["/home/nicola/Projects/machina/lib/main.js"],
     "IS_NODE":    false,
 
     "DEPENDENCIES": [],

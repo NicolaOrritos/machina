@@ -1,24 +1,24 @@
 
 {
     "NAME": "touch",
-    
+
     "EXECUTABLE": "touch",
-    "ARGS":       ["/tmp/pippo.txt"],
+    "ARGS":       ["/tmp/pippo2.txt"],
     "IS_NODE":    false,
-    
+
     "DEPENDENCIES": [],
-    
+
     "RETRY_STRATEGY":
     {
         "ENABLED": true,
         "TIMES":   3
     },
-    
+
     "FAILURE_STRATEGY":
     {
         "STOP_QUEUE": true
     },
-    
+
     "TIMEOUT_STRATEGY":
     {
         "ENABLED":       true,
